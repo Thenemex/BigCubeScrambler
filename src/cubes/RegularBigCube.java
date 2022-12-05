@@ -24,10 +24,22 @@ public class RegularBigCube {
     }
 
     /**
-     * Getter for the number of slices
-     * @return The slices
+     * Getter for the scramble of the cube
+     * @return The scramble
      */
-    public int getNbSlices() {
-        return nbSlices;
+    public Scramble getScramble() {
+        return scramble;
+    }
+
+    /**
+     * Return the half of the number of slices
+     * @return The half of the number of slices
+     */
+    public int getHalfSlices() {
+        return nbSlices / 2;
+    }
+
+    @Override public String toString() {
+        return nbSlices + "x" + nbSlices + "x" + nbSlices;
     }
 }

@@ -1,9 +1,10 @@
 package cubes.primitives;
 
-import iterators.IteratorFaces;
+import exceptions.conversions.InvalidConversionException;
 
-import java.util.Iterator;
-
+/**
+ * An enum for all the faces of a regular cube
+ */
 public enum Face {
     U("U"),
     F("F"),
@@ -12,8 +13,12 @@ public enum Face {
     L("L"),
     D("D");
 
-    private String print;
+    private final String print;
 
+    /**
+     * Private constructor
+     * @param print The printed code
+     */
     Face(String print) {
         this.print = print;
     }
@@ -22,8 +27,22 @@ public enum Face {
         return print;
     }
 
-    public static Iterator<Face> getIterator() {
-        return new IteratorFaces();
+    /**
+     * Return the face linked to the number
+     * @param match The number in [1..6]
+     * @return The face
+     * @throws InvalidConversionException The number is incorrect
+     */
+    public static Face toFace(int match) {
+        switch (match) {
+            case 1 : return U;
+            case 2 : return F;
+            case 3 : return R;
+            case 4 : return B;
+            case 5 : return L;
+            case 6 : return D;
+            default: throw new InvalidConversionException();
+        }
     }
 
 }

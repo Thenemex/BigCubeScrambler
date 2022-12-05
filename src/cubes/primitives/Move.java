@@ -1,5 +1,6 @@
 package cubes.primitives;
 
+import exceptions.cubes.IncorrectNumberOfSlicesException;
 import singletons.Factory;
 
 /**
@@ -8,21 +9,25 @@ import singletons.Factory;
  */
 public class Move {
 
-    private final Face face;
-    private final int slice;
-    private final Turn turn;
+    private final String expression;
 
     /**
      * Default constructeur with random states
      * @param nbSlices The number of slices of the cube
+     * @throws IncorrectNumberOfSlicesException nbSlices must be equals or higher than 5
      */
     public Move(int nbSlices) {
-        this.face = Factory.i().makeRdFace();
-        this.slice = Factory.i().getRdInt(1, nbSlices);
-        this.turn = Factory.i().makeRdTurn();
+        Face face = Factory.i().makeRdFace();
+        int slice = Factory.i().getRdInt(1, nbSlices);
+        Turn turn = Factory.i().makeRdTurn();
+        switch (slice) {
+            case 1 : expression = "" + face + turn; break;
+            case 2 : expression = face + "w" + turn; break;
+            default: expression = "" + slice + face + "w" + turn; break;
+        }
     }
 
     @Override public String toString() {
-        return slice + "" + turn;
+        return expression;
     }
 }

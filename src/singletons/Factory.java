@@ -12,8 +12,8 @@ import java.util.Random;
 public class Factory {
 
     protected static final Factory instance = new Factory();
-    Random rd = new Random();
-    private Move prevMove;
+    private final Random rd = new Random();
+    private Move prevMove; // ToDo No repetitive moves
 
     /**
      * Default private constructor
@@ -28,20 +28,19 @@ public class Factory {
         return instance;
     }
 
+    /**
+     * Returns a random face
+     * @return A face
+     */
     public Face makeRdFace() {
-        int rand = getRdInt(1, 6);
-        // ToDo
+        return Face.toFace(getRdInt(1,6));
     }
     /**
-     * Return a random number in [0..2]
-     * 0 equals to -1/', 1 to 1/ , and 2 to 2/2.
-     * @return A random turn
+     * Returns a random turn
+     * @return A turn
      */
     public Turn makeRdTurn() {
-        int rand = getRdInt(0,2);
-        if (rand == 0) return Turn.ANTICLOCKWISE;
-        if (rand == 1) return Turn.CLOCKWISE;
-        return Turn.DOUBLE;
+        return Turn.toTurn(getRdInt(0,2));
     }
 
     /**
@@ -61,7 +60,7 @@ public class Factory {
      * @return The random number
      */
     public int getRdInt(int a, int b) {
-        return rd.nextInt(a + 1 - b) + a;
+        return rd.nextInt(b + 1 - a) + a;
     }
 
 }
