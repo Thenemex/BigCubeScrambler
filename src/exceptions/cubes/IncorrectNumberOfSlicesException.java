@@ -13,6 +13,6 @@ extends BigCubeScramblerException {
      * Default constructeur with the error message
      */
     public IncorrectNumberOfSlicesException() {
-        super("Error : The minimum number of slices is 5");
+        super("Error : The minimum number of slices is 8");
     }
 }

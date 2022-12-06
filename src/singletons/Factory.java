@@ -2,6 +2,7 @@ package singletons;
 
 import cubes.primitives.Face;
 import cubes.primitives.Turn;
+import exceptions.cubes.IncorrectNumberOfSlicesException;
 
 import java.util.Random;
 
@@ -45,10 +46,11 @@ public class Factory {
      * Return the scramble's length for the given slices number
      * @param nbSlices The slices
      * @return The scramble's length
+     * @throws IncorrectNumberOfSlicesException nbSlices must be equal or higher than 8
      */
     public int getScrambleLength(int nbSlices) {
-        if (nbSlices == 5) return 60;
-        return 80 + (nbSlices - 6) * 10;
+        if (nbSlices < 8) throw new IncorrectNumberOfSlicesException();
+        return 100 + (nbSlices - 8) * 10;
     }
 
     /**
