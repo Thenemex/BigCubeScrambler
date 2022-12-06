@@ -53,9 +53,9 @@ implements Iterable<Move>{
      * ToDo Improve to all slices possibilities
      */
     public boolean isIncorrect(Move move) {
-        boolean sameAll = true, sameFace = true;
+        boolean sameAll = false, sameFace = true;
         for (Move m : prevMoves) {
-            sameAll &= move.equals(m);
+            sameAll |= move.equals(m);
             sameFace &= move.isSameFaceOnly(m);
         }
         // same Face and same Slice -> incorrect
