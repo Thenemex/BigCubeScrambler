@@ -2,15 +2,17 @@ package scramble;
 
 import cubes.RegularBigCube;
 import cubes.primitives.Move;
+import iterators.IteratorScramble;
 import singletons.Factory;
 
-import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Iterator;
 
 /**
  * A scramble generator
  */
-public class Scramble {
+public class Scramble
+implements Iterable<Move>{
 
     protected final RegularBigCube cube;
     protected final Move[] moves;
@@ -68,7 +70,16 @@ public class Scramble {
         return false;
     }
 
-    @Override public String toString() {
-        return Arrays.toString(moves);
+    @Override public Iterator<Move> iterator() {
+        return new IteratorScramble(moves);
     }
+    @Override public String toString() {
+        StringBuilder sb = new StringBuilder(5 * moves.length);
+        for (Move m : this)
+            sb.append(" ").append(m);
+        sb.replace(0, 1, "");
+        return sb.toString();
+    }
+
+
 }
