@@ -1,7 +1,6 @@
 package singletons;
 
 import cubes.primitives.Face;
-import cubes.primitives.Move;
 import cubes.primitives.Turn;
 
 import java.util.Random;
@@ -13,7 +12,6 @@ public class Factory {
 
     protected static final Factory instance = new Factory();
     private final Random rd = new Random();
-    private Move prevMove; // ToDo No repetitive moves
 
     /**
      * Default private constructor
