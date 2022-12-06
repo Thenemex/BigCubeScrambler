@@ -2,6 +2,8 @@ package cubes.primitives;
 
 import singletons.Factory;
 
+import java.util.Objects;
+
 /**
  * A move on a regular cube
  * @author MD
@@ -42,6 +44,31 @@ public class Move {
         return slice;
     }
 
+    /**
+     * Shows if a move got the same face but different slice from another move
+     * @param move The another move
+     * @return True if Face are equal and Slice not equal.
+     */
+    public boolean isSameFaceOnly(Move move) {
+        return getFace() == move.getFace()
+                && getSlice() != move.getSlice();
+    }
+
+    /**
+     * Shows if a Move got the same Face and Slice with the argument
+     * (Regardless of the Turn in the expression
+     * @param o Another move
+     * @return True if Face and Slice are the sames
+     */
+    @Override public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Move)) return false;
+        Move move = (Move) o;
+        return getSlice() == move.getSlice() && getFace() == move.getFace();
+    }
+    @Override public int hashCode() {
+        return Objects.hash(getFace(), getSlice());
+    }
     @Override public String toString() {
         return expression;
     }

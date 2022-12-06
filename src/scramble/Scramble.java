@@ -5,6 +5,7 @@ import cubes.primitives.Move;
 import singletons.Factory;
 
 import java.util.Arrays;
+import java.util.HashSet;
 
 /**
  * A scramble generator
@@ -13,7 +14,7 @@ public class Scramble {
 
     protected final RegularBigCube cube;
     protected final Move[] moves;
-    private Move prevMove;
+    private final HashSet<Move> prevMoves;
 
     /**
      * Default constructor with the cube it's linked to
@@ -23,6 +24,7 @@ public class Scramble {
     public Scramble(RegularBigCube cube) {
         this.cube = cube;
         this.moves = new Move[Factory.i().getScrambleLength(cube.getHalfSlices())];
+        this.prevMoves = new HashSet<>(cube.getHalfSlices() ,1);
         generate();
     }
 
@@ -32,12 +34,12 @@ public class Scramble {
     public void generate() {
         Move move = new Move(cube.getHalfSlices());
         moves[0] = move;
-        prevMove = moves[0];
+        prevMoves.clear();
+        prevMoves.add(move);
         for (int i = 1; i < moves.length; i++) {
             do move = new Move(cube.getHalfSlices());
             while (isIncorrect(move));
             moves[i] = move;
-            prevMove = move;
         }
     }
 
@@ -49,8 +51,21 @@ public class Scramble {
      * ToDo Improve to all slices possibilities
      */
     public boolean isIncorrect(Move move) {
-        return move.getFace().equals(prevMove.getFace())
-                && move.getSlice() == prevMove.getSlice();
+        boolean sameAll = true, sameFace = true;
+        for (Move m : prevMoves) {
+            sameAll &= move.equals(m);
+            sameFace &= move.isSameFaceOnly(m);
+        }
+        // same Face and same Slice -> incorrect
+        if (sameAll) return true;
+        // same Face but different Slice -> correct
+        if (sameFace) {
+            prevMoves.add(move);
+            return false;
+        }
+        prevMoves.clear();
+        prevMoves.add(move);
+        return false;
     }
 
     @Override public String toString() {

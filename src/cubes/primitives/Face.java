@@ -23,10 +23,6 @@ public enum Face {
         this.print = print;
     }
 
-    @Override public String toString() {
-        return print;
-    }
-
     /**
      * Return the face linked to the number
      * @param match The number in [1..6]
@@ -45,4 +41,7 @@ public enum Face {
         }
     }
 
+    @Override public String toString() {
+        return print;
+    }
 }
