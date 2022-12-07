@@ -25,7 +25,7 @@ implements Iterable<Move>{
      */
     public Scramble(RegularBigCube cube) {
         this.cube = cube;
-        this.moves = new Move[Factory.i().getScrambleLength(cube.getHalfSlices())];
+        this.moves = new Move[Factory.i().getScrambleLength(cube.getNbSlices())];
         this.prevMoves = new HashSet<>(cube.getHalfSlices() ,1);
         generate();
     }
