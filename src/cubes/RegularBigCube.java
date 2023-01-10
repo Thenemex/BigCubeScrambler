@@ -11,7 +11,6 @@ public class RegularBigCube {
 
     private final int nbSlices;
     protected Scramble scramble;
-    private final String expression;
 
     /**
      * Constructor with the number of slices of the cube
@@ -22,7 +21,6 @@ public class RegularBigCube {
         if (nbSlices < 8) throw new IncorrectNumberOfSlicesException();
         this.nbSlices = nbSlices;
         this.scramble = new Scramble(this);
-        this.expression = nbSlices + "x" + nbSlices + "x" + nbSlices;
     }
 
     /**
@@ -40,15 +38,7 @@ public class RegularBigCube {
         return scramble;
     }
 
-    /**
-     * Return the half of the number of slices
-     * @return The half of the number of slices
-     */
-    public int getHalfSlices() {
-        return nbSlices / 2;
-    }
-
     @Override public String toString() {
-        return expression + " :\n" + getScramble();
+        return nbSlices + "x" + nbSlices + "x" + nbSlices + " :\n" + getScramble();
     }
 }

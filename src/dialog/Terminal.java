@@ -11,9 +11,6 @@ import java.util.Scanner;
 public class Terminal {
 
     private final Scanner sc = new Scanner(System.in);
-    protected final String initialQuestion = "A regular big cube is in the form \"NxNxN\", with N >= 8.\n - Type a number of slices : ";
-    protected final String errorIntFormat = "Error : The string you typed is not a number";
-    protected final String again = ". Type again : ";
 
     /**
      * Default constructor
@@ -25,15 +22,16 @@ public class Terminal {
      * @return The number typed
      */
     public int askNumber() {
-        System.out.print(initialQuestion);
+        String again = ". Type again : ";
+        System.out.print("A regular big cube is in the form \"NxNxN\", with N >= 8.\n - Type a number of slices : ");
         do try {
-            int number = Integer.parseInt(sc.nextLine());
-            if (number < 8) throw new IncorrectNumberOfSlicesException();
-            return number;
-        } catch (NumberFormatException nfe) {
-            System.out.print(errorIntFormat + again);
-        } catch (IncorrectNumberOfSlicesException inose) {
-            System.out.print(inose.getMessage() + again);
+                int number = Integer.parseInt(sc.nextLine());
+                if (number < 8) throw new IncorrectNumberOfSlicesException();
+                return number;
+            } catch (NumberFormatException nfe) {
+                System.out.print("Error : The string you typed is not a number" + again);
+            } catch (IncorrectNumberOfSlicesException inose) {
+                System.out.print(inose.getMessage() + again);
         } while (true);
     }
 

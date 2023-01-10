@@ -14,7 +14,7 @@ import java.util.Iterator;
 public class Scramble
 implements Iterable<Move>{
 
-    protected final RegularBigCube cube;
+    private final int halfSlices;
     protected final Move[] moves;
     private final HashSet<Move> prevMoves;
 
@@ -24,9 +24,9 @@ implements Iterable<Move>{
      * @param cube The cube
      */
     public Scramble(RegularBigCube cube) {
-        this.cube = cube;
+        this.halfSlices = cube.getNbSlices() / 2;
         this.moves = new Move[Factory.i().getScrambleLength(cube.getNbSlices())];
-        this.prevMoves = new HashSet<>(cube.getHalfSlices() ,1);
+        this.prevMoves = new HashSet<>(cube.getNbSlices() / 2 ,1);
         generate();
     }
 
@@ -34,19 +34,19 @@ implements Iterable<Move>{
      * Fill the scramble with random moves
      */
     public void generate() {
-        Move move = new Move(cube.getHalfSlices());
+        Move move = new Move(halfSlices);
         moves[0] = move;
         prevMoves.clear();
         prevMoves.add(move);
         for (int i = 1; i < moves.length; i++) {
-            do move = new Move(cube.getHalfSlices());
+            do move = new Move(halfSlices);
             while (isIncorrect(move));
             moves[i] = move;
         }
     }
 
     /**
-     * Shows if the move is incorrect in the current context
+     * Shows if the move is incorrect in the current context compared to the previous moves
      * Contains the main condition for moves in the scramble
      * @param move The move
      * @return True if the move is incorrect

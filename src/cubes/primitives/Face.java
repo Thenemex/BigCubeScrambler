@@ -35,14 +35,11 @@ public enum Face {
      */
     public static Face toFace(int match) {
         Iterator<Face> ite = new IteratorFace();
-        int cpt = 0;
-        try {
-            for (Face face = ite.next();; face = ite.next())
-                if (++cpt == match) return face;
+        try { for (Face face = ite.next();; face = ite.next())
+                  if (match-- == 1) return face;
         } catch (NoSuchElementException nsee) {
             throw new InvalidConversionException();
         }
-
     }
 
     @Override public String toString() {
