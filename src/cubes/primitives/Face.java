@@ -1,7 +1,7 @@
 package cubes.primitives;
 
 import exceptions.conversions.InvalidConversionException;
-import iterators.IteratorFace;
+import iterators.IteratorEnum;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -34,8 +34,8 @@ public enum Face {
      * @throws InvalidConversionException The number is incorrect
      */
     public static Face toFace(int match) {
-        Iterator<Face> ite = new IteratorFace();
-        try { for (Face face = ite.next();; face = ite.next())
+        Iterator<Object> ite = new IteratorEnum(Face.class);
+        try { for (Face face = (Face) ite.next();; face = (Face) ite.next())
                   if (match-- == 1) return face;
         } catch (NoSuchElementException nsee) {
             throw new InvalidConversionException();
