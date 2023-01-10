@@ -1,6 +1,10 @@
 package cubes.primitives;
 
 import exceptions.conversions.InvalidConversionException;
+import iterators.IteratorFace;
+
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  * An enum for all the faces of a regular cube
@@ -30,15 +34,15 @@ public enum Face {
      * @throws InvalidConversionException The number is incorrect
      */
     public static Face toFace(int match) {
-        switch (match) {
-            case 1 : return U;
-            case 2 : return F;
-            case 3 : return R;
-            case 4 : return B;
-            case 5 : return L;
-            case 6 : return D;
-            default: throw new InvalidConversionException();
+        Iterator<Face> ite = new IteratorFace();
+        int cpt = 0;
+        try {
+            for (Face face = ite.next();; face = ite.next())
+                if (++cpt == match) return face;
+        } catch (NoSuchElementException nsee) {
+            throw new InvalidConversionException();
         }
+
     }
 
     @Override public String toString() {

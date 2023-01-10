@@ -22,11 +22,7 @@ public class Move {
         this.face = Factory.i().makeRdFace();
         this.slice = Factory.i().getRdInt(1, nbHalfSlices);
         Turn turn = Factory.i().makeRdTurn();
-        switch (slice) {
-            case 1 : expression = "" + face + turn; break;
-            case 2 : expression = face + "w" + turn; break;
-            default: expression = "" + slice + face + "w" + turn; break;
-        }
+        expression = (slice == 1) ? "" + face + turn : (slice == 2) ? face + "w" + turn : "" + slice + face + "w" + turn;
     }
 
     /**
@@ -50,8 +46,7 @@ public class Move {
      * @return True if Face are equal and Slice not equal.
      */
     public boolean isSameFaceOnly(Move move) {
-        return getFace() == move.getFace()
-                && getSlice() != move.getSlice();
+        return getFace() == move.getFace() && getSlice() != move.getSlice();
     }
 
     /**
