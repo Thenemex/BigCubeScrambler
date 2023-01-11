@@ -8,7 +8,7 @@ import java.util.NoSuchElementException;
 public class IteratorScramble
 implements Iterator<Move> {
 
-    protected final Move[] moves;
+    private final Move[] moves;
     private int index = -1;
 
     public IteratorScramble(Move ... moves) {

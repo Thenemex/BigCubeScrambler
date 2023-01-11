@@ -4,6 +4,7 @@ import cubes.primitives.Face;
 import cubes.primitives.Turn;
 import exceptions.cubes.IncorrectNumberOfSlicesException;
 
+import java.io.File;
 import java.util.Random;
 
 /**
@@ -11,7 +12,7 @@ import java.util.Random;
  */
 public class Factory {
 
-    protected static final Factory instance = new Factory();
+    private static final Factory instance = new Factory();
     private final Random rd = new Random();
 
     /**
@@ -61,6 +62,16 @@ public class Factory {
      */
     public int getRdInt(int a, int b) {
         return rd.nextInt(b + 1 - a) + a;
+    }
+
+    /**
+     * Create the output folder if it doesn't exist
+     * @return The folder's name
+     */
+    public String getOutputDir() {
+        String out = "output/";
+        new File(out).mkdirs();
+        return out;
     }
 
 }

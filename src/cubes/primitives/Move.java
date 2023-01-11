@@ -10,8 +10,8 @@ import java.util.Objects;
  */
 public class Move {
 
-    protected final Face face;
-    protected final int slice;
+    private final Face face;
+    private final int slice;
     private final String expression;
 
     /**
@@ -29,14 +29,14 @@ public class Move {
      * Getter for the face
      * @return The face
      */
-    public Face getFace() {
+    private Face getFace() {
         return face;
     }
     /**
      * Getter for the slice number
      * @return The slice
      */
-    public int getSlice() {
+    private int getSlice() {
         return slice;
     }
 

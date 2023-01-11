@@ -10,7 +10,7 @@ import scramble.Scramble;
 public class RegularBigCube {
 
     private final int nbSlices;
-    protected Scramble scramble;
+    private Scramble scramble;
 
     /**
      * Constructor with the number of slices of the cube

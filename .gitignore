@@ -3,5 +3,8 @@
 out
 *.iml
 
+# Output
+output/
+
 # Tests
 tests/Client.java

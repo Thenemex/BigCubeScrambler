@@ -15,7 +15,7 @@ public class Scramble
 implements Iterable<Move>{
 
     private final int halfSlices;
-    protected final Move[] moves;
+    private final Move[] moves;
     private final HashSet<Move> prevMoves;
 
     /**
@@ -33,7 +33,7 @@ implements Iterable<Move>{
     /**
      * Fill the scramble with random moves
      */
-    public void generate() {
+    private void generate() {
         Move move = new Move(halfSlices);
         moves[0] = move;
         prevMoves.clear();
@@ -52,7 +52,7 @@ implements Iterable<Move>{
      * @return True if the move is incorrect
      * ToDo Improve to all slices possibilities
      */
-    public boolean isIncorrect(Move move) {
+    private boolean isIncorrect(Move move) {
         boolean sameAll = false, sameFace = true;
         for (Move m : prevMoves) {
             sameAll |= move.equals(m);
