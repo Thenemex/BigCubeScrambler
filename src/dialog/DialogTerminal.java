@@ -1,27 +1,21 @@
 package dialog;
 
 import exceptions.cubes.IncorrectNumberOfSlicesException;
-import exceptions.files.FileException;
-import singletons.Factory;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Scanner;
 
 /**
  * A class responsive for all the input/output on the terminal
  * @author MD
  */
-public class Terminal {
+public class DialogTerminal {
 
     private final Scanner sc = new Scanner(System.in);
 
     /**
      * Default constructor
      */
-    public Terminal() {}
+    public DialogTerminal() {}
 
     /**
      * Print the question and ask the user to type a number of slices
@@ -45,7 +39,7 @@ public class Terminal {
      * @return The file's name
      */
     public String askFileName() {
-        System.out.print(" - Type a filename to write the scramble to : ");
+        System.out.print(" - Type a filename to write the scramble to (without the \".txt\") : ");
         return sc.nextLine();
     }
 
@@ -54,25 +48,6 @@ public class Terminal {
      * @param o The object
      */
     public void print(Object o) {
-        System.out.println("\n" + o);
-    }
-
-    /**
-     * Write the text to the file
-     * @param text The text
-     * @param fileName The file's name
-     * @throws FileException Problems with the file
-     */
-    public void writeTo(String text, String fileName) throws FileException {
-        File file = new File(Factory.i().getOutputDir() + fileName);
-        if (file.exists()) throw new FileException("The file already exists");
-        try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-            writer.write(text);
-            writer.newLine();
-            writer.close();
-        } catch (IOException ioe) {
-            throw new FileException(ioe.getMessage());
-        } System.out.println("Success !");
+        System.out.println(o);
     }
 }

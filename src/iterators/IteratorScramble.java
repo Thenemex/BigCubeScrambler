@@ -5,6 +5,9 @@ import cubes.primitives.Move;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+/**
+ * A simple iterator on an Object Array
+ */
 public class IteratorScramble
 implements Iterator<Move> {
 

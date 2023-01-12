@@ -1,15 +1,17 @@
 import cubes.RegularBigCube;
-import dialog.Terminal;
+import dialog.DialogTerminal;
 import exceptions.files.FileException;
 
 public class Main {
     public static void main(String[] args) {
-        Terminal t = new Terminal();
+        DialogTerminal t = new DialogTerminal();
         RegularBigCube cube = new RegularBigCube(t.askNbSlices());
         try {
-            t.writeTo(cube.toString(), t.askFileName());
+            cube.writeScramble(t.askFileName());
+            t.print("Success");
         } catch (FileException fe) {
             t.print(fe.getMessage());
         }
+        t.print("");
     }
 }

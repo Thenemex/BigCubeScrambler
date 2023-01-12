@@ -1,7 +1,14 @@
 package cubes;
 
 import exceptions.cubes.IncorrectNumberOfSlicesException;
+import exceptions.files.FileException;
 import scramble.Scramble;
+import singletons.Factory;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 /**
  * A regular big cube of the factor NxNxN, with n >= 8 the number of slices.
@@ -31,14 +38,34 @@ public class RegularBigCube {
         return nbSlices;
     }
     /**
-     * Getter for the scramble of the cube
-     * @return The scramble
+     * Returns the general expression of the cube (NxNxN)
+     * @return The expression
      */
-    public Scramble getScramble() {
-        return scramble;
+    public String getExpression() {
+        return nbSlices + "x" + nbSlices + "x" + nbSlices + "\n";
+    }
+
+    /**
+     * Write the scramble to the file
+     * NB: No ".txt" needed, only the short filename
+     * @param fileName The file's name
+     * @throws FileException Problems with the file
+     */
+    public void writeScramble(String fileName) throws FileException {
+        File file = new File(Factory.i().getOutputDir() + fileName + ".txt");
+        if (file.exists()) throw new FileException("The file already exists");
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+            writer.write(getExpression());
+            writer.write(toString());
+            writer.newLine();
+            writer.close();
+        } catch (IOException ioe) {
+            throw new FileException(ioe.getMessage());
+        }
     }
 
     @Override public String toString() {
-        return nbSlices + "x" + nbSlices + "x" + nbSlices + " :\n" + getScramble();
+        return scramble.toString();
     }
 }
