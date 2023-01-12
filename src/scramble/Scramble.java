@@ -15,6 +15,7 @@ public class Scramble
 implements Iterable<Move>{
 
     private final int halfSlices;
+    private final boolean isEvenLayered;
     private final Move[] moves;
     private final HashSet<Move> prevMoves;
 
@@ -25,6 +26,7 @@ implements Iterable<Move>{
      */
     public Scramble(RegularBigCube cube) {
         this.halfSlices = cube.getNbSlices() / 2;
+        this.isEvenLayered = (cube.getNbSlices() % 2) == 0;
         this.moves = new Move[Factory.i().getScrambleLength(cube.getNbSlices())];
         this.prevMoves = new HashSet<>(cube.getNbSlices() / 2 ,1);
         generate();
@@ -34,12 +36,12 @@ implements Iterable<Move>{
      * Fill the scramble with random moves
      */
     private void generate() {
-        Move move = new Move(halfSlices);
+        Move move = new Move(halfSlices, isEvenLayered);
         moves[0] = move;
         prevMoves.clear();
         prevMoves.add(move);
         for (int i = 1; i < moves.length; i++) {
-            do move = new Move(halfSlices);
+            do move = new Move(halfSlices, isEvenLayered);
             while (isIncorrect(move));
             moves[i] = move;
         }
@@ -50,7 +52,6 @@ implements Iterable<Move>{
      * Contains the main condition for moves in the scramble
      * @param move The move
      * @return True if the move is incorrect
-     * ToDo Improve to all slices possibilities
      */
     private boolean isIncorrect(Move move) {
         boolean sameAll = false, sameFace = true;

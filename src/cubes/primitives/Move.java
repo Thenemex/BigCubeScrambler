@@ -10,18 +10,20 @@ import java.util.Objects;
  */
 public class Move {
 
-    private final Face face;
     private final int slice;
+    private final Face face;
     private final String expression;
 
     /**
      * Default constructeur with random states
      * @param nbHalfSlices The half-slices of the cube
+     * @param isEvenLayered True if the number of layers of the cube are even
      */
-    public Move(int nbHalfSlices) {
-        this.face = Factory.i().makeRdFace();
-        this.slice = Factory.i().getRdInt(1, nbHalfSlices);
-        Turn turn = Factory.i().makeRdTurn();
+    public Move(int nbHalfSlices, boolean isEvenLayered) {
+        this.slice = Factory.i().getRandomInt(1, nbHalfSlices);
+        if (slice == nbHalfSlices && isEvenLayered) this.face = Factory.i().makeRandomFRUFace();
+        else this.face = Factory.i().makeRandomFace();
+        Turn turn = Factory.i().makeRandomTurn();
         expression = (slice == 1) ? "" + face + turn : (slice == 2) ? face + "w" + turn : "" + slice + face + "w" + turn;
     }
 

@@ -69,6 +69,7 @@ public class Terminal {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(file));
             writer.write(text);
+            writer.newLine();
             writer.close();
         } catch (IOException ioe) {
             throw new FileException(ioe.getMessage());

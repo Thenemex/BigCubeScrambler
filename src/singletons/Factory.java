@@ -10,6 +10,7 @@ import java.util.Random;
 /**
  * A singleton making random object's states for the application
  */
+@SuppressWarnings("ResultOfMethodCallIgnored")
 public class Factory {
 
     private static final Factory instance = new Factory();
@@ -32,15 +33,22 @@ public class Factory {
      * Returns a random face
      * @return A face
      */
-    public Face makeRdFace() {
-        return Face.toFace(getRdInt(1,6));
+    public Face makeRandomFace() {
+        return Face.toFace(getRandomInt(1,6));
+    }
+    /**
+     * Return a random face within [F,R,U]
+     * @return A face
+     */
+    public Face makeRandomFRUFace() {
+        return Face.toFace(getRandomInt(1,3));
     }
     /**
      * Returns a random turn
      * @return A turn
      */
-    public Turn makeRdTurn() {
-        return Turn.toTurn(getRdInt(0,2));
+    public Turn makeRandomTurn() {
+        return Turn.toTurn(getRandomInt(0,2));
     }
 
     /**
@@ -60,7 +68,7 @@ public class Factory {
      * @param b Upper bound (inclusive)
      * @return The random number
      */
-    public int getRdInt(int a, int b) {
+    public int getRandomInt(int a, int b) {
         return rd.nextInt(b + 1 - a) + a;
     }
 
