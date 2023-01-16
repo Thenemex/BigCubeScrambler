@@ -12,6 +12,6 @@ extends BigCubeScramblerException {
      * Default constructeur with the error message
      */
     public ScrambleNotGeneratedException() {
-        super("Error : The number of scrambles must be between 1 and 100");
+        super("The scramble isn't generated");
     }
 }

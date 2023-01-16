@@ -1,6 +1,5 @@
 package scramble;
 
-import cubes.RegularBigCube;
 import cubes.primitives.Move;
 import iterators.IteratorScramble;
 import singletons.Factory;
@@ -21,16 +20,14 @@ implements Iterable<Move>{
     private final HashSet<Move> prevMoves;
 
     /**
-     * Default constructor with the cube it's linked to
-     * Also generate the scramble on instanciation
-     * @param cube The cube
+     * Default constructor with the number of slices of the cube
+     * @param nbSlices The number of slices
      */
-    public Scramble(RegularBigCube cube) {
-        this.halfSlices = cube.getNbSlices() / 2;
-        this.isEvenLayered = (cube.getNbSlices() % 2) == 0;
-        this.moves = new Move[Factory.i().getScrambleLength(cube.getNbSlices())];
-        this.prevMoves = new HashSet<>(cube.getNbSlices() / 2 ,1);
-        generate();
+    public Scramble(int nbSlices) {
+        this.halfSlices = nbSlices / 2;
+        this.isEvenLayered = (nbSlices % 2) == 0;
+        this.moves = new Move[Factory.i().getScrambleLength(nbSlices)];
+        this.prevMoves = new HashSet<>(nbSlices / 2 ,1);
     }
 
     /**
@@ -47,6 +44,13 @@ implements Iterable<Move>{
         }
     }
 
+    /**
+     * Shows if the scramble has been generated or not
+     * @return True if the scramble is generated
+     */
+    public boolean isNotGenerated() {
+        return moves[0] == null;
+    }
     /**
      * Shows if the move is incorrect in the current context compared to the previous moves
      * Contains the main condition for moves in the scramble
