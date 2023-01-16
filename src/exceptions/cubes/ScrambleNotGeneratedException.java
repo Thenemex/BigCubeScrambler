@@ -3,15 +3,15 @@ package exceptions.cubes;
 import exceptions.BigCubeScramblerException;
 
 /**
- * Exception thrown when attempting to write an incorrect number of scrambles
+ * Exception thrown when attempting to perform an action with the scramble, that isn't generated yet
  */
-public class IncorrectNumberOfScramblesException
+public class ScrambleNotGeneratedException
 extends BigCubeScramblerException {
 
     /**
      * Default constructeur with the error message
      */
-    public IncorrectNumberOfScramblesException() {
+    public ScrambleNotGeneratedException() {
         super("Error : The number of scrambles must be between 1 and 100");
     }
 }

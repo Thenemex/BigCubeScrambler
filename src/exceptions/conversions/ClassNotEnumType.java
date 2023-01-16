@@ -2,6 +2,9 @@ package exceptions.conversions;
 
 import exceptions.BigCubeScramblerException;
 
+/**
+ * Exception thrown when the incorrect class is given to IteratorEnum
+ */
 public class ClassNotEnumType
 extends BigCubeScramblerException {
 

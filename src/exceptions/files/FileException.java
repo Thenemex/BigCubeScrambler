@@ -2,6 +2,9 @@ package exceptions.files;
 
 import exceptions.BigCubeScramblerException;
 
+/**
+ * Exception thrown where there is a problem with the file input/output
+ */
 public class FileException
 extends BigCubeScramblerException {
 

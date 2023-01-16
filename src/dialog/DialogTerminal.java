@@ -7,7 +7,6 @@ import java.util.Scanner;
 
 /**
  * A class responsive for all the input/output on the terminal
- * @author MD
  */
 public class DialogTerminal {
 

@@ -4,7 +4,6 @@ import exceptions.BigCubeScramblerException;
 
 /**
  * Exception thrown when attempting to instanciate a BigCube with not enough slices
- * @author MD
  */
 public class IncorrectNumberOfSlicesException
 extends BigCubeScramblerException {

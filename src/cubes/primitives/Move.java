@@ -6,7 +6,6 @@ import java.util.Objects;
 
 /**
  * A move on a regular cube
- * @author MD
  */
 public class Move {
 
