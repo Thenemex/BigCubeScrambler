@@ -48,10 +48,11 @@ public class RegularBigCube {
     /**
      * Write the scramble to the file
      * NB: No ".txt" needed, only the short filename
+     * @param nbScrambles The number of scrambles
      * @param fileName The file's name
      * @throws FileException Problems with the file
      */
-    public void writeScramble(String fileName) throws FileException {
+    public void writeScramble(int nbScrambles, String fileName) throws FileException {
         File file = new File(Factory.i().getOutputDir() + fileName + ".txt");
         if (file.exists()) throw new FileException("The file already exists");
         try {

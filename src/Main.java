@@ -7,7 +7,7 @@ public class Main {
         DialogTerminal t = new DialogTerminal();
         RegularBigCube cube = new RegularBigCube(t.askNbSlices());
         try {
-            cube.writeScramble(t.askFileName());
+            cube.writeScramble(1, t.askFileName());
             t.print("Success");
         } catch (FileException fe) {
             t.print(fe.getMessage());

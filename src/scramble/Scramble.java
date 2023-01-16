@@ -5,6 +5,7 @@ import cubes.primitives.Move;
 import iterators.IteratorScramble;
 import singletons.Factory;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
 
@@ -35,12 +36,11 @@ implements Iterable<Move>{
     /**
      * Fill the scramble with random moves
      */
-    private void generate() {
-        Move move = new Move(halfSlices, isEvenLayered);
-        moves[0] = move;
-        prevMoves.clear();
-        prevMoves.add(move);
-        for (int i = 1; i < moves.length; i++) {
+    public void generate() {
+        Arrays.fill(moves, null); // Clearing the array of moves
+        prevMoves.clear(); // Clearing the array of prev-moves
+        Move move;
+        for (int i = 0; i < moves.length; i++) {
             do move = new Move(halfSlices, isEvenLayered);
             while (isIncorrect(move));
             moves[i] = move;
